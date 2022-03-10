@@ -1,0 +1,26 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+<div>
+    <form action="{% url 'Logistics:invoice_form' %}" method="post">
+        {% csrf_token %}
+        {% if form %}
+            <h1>This is an Invoice Form</h1>
+            <div style="width:200">
+                {% bootstrap_form form %}
+            </div>
+        {% else %}
+            <p>No forms are available.</p>
+        {% endif %}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+<div>
+    <button onclick="location.href='{% url 'Logistics:invoice_display' %}'">Display all Invoice data</button>
+</div>
+<br>
+<div>
+    <button onclick="location.href='{% url 'Logistics:home' %}'">Home Page</button>
+</div>

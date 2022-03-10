@@ -1,0 +1,53 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0.28
+    env_file:
+      - ./webapp/webapp/settings/.env
+    volumes:
+      - webapp_db_vol:/var/lib/mysql:rw
+      - ./compose/mysql/conf/mysql.conf:/etc/mysql/my.cnf
+      - ./compose/mysql/init:/docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306" 
+    restart: always
+  # This is Django project + uWSGI server
+  web:
+    build: ./webapp
+    expose:
+      - "80"
+    volumes:
+      - ./webapp:/Eastridge/webapp
+      - webapp_media_vol:/Eastridge/webapp/media
+      - webapp_static_vol:/Eastridge/webapp/static
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      - DEBUG=False
+    restart: always
+    tty: true
+    stdin_open: true
+  # nginx container depends on django+uwsgi container only
+  nginx:
+    build: ./compose/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - "80"
+    volumes:
+      - ./webapp/static:/usr/share/nginx/html/static
+      - webapp_media_vol:/usr/share/nginx/html/media
+      - ./compose/nginx/ssl:/usr/share/nginx/ssl
+      - ./compose/nginx/log:/var/log/nginx
+    links:
+      - web
+    depends_on:
+      - web
+    restart: always
+volumes:
+  webapp_media_vol:
+  webapp_db_vol:
+  webapp_static_vol:

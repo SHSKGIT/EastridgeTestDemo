@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logistics Home Page</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+<body>
+    <h1>Welcome to EastRidge Logistics Home Page</h1>
+    <button onclick="location.href='{% url 'Logistics:invoice_form' %}'">Click to view Invoice Form</button>
+    <button onclick="location.href='{% url 'Logistics:invoiceitem_form' %}'">Click to view Invoice Item Form</button>
+</body>
+</html>

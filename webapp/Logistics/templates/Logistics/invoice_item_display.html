@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+<body>
+    <h1>All available invoice items:</h1>
+    <div>
+        {% if data_list %}
+        <ul>
+            {% for data in data_list %}
+                <li>{{ forloop.counter }}. Units: {{ data.units }}, Description: {{ data.description }}, Amount: {{ data.amount }} (Date: {{ data.invoice__date }})</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+    <div>
+        <button onclick="location.href='{% url 'Logistics:invoiceitem_form' %}'">Go back</button>
+    </div>
+    <br>
+    <div>
+        <button onclick="location.href='{% url 'Logistics:home' %}'">Home Page</button>
+    </div>
+</body>
+</html>

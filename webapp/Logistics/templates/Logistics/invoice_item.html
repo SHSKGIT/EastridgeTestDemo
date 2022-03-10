@@ -1,0 +1,28 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+<div>
+    <form action="{% url 'Logistics:invoiceitem_form' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form %}
+            <h1>This is an Invoice Item Form</h1>
+            <h5>(units, description can be blank)</h5>
+            <div style="width:250">
+                {% bootstrap_form form %}
+<!--                {{ form.as_p }}-->
+            </div>
+        {% else %}
+            <p>No forms are available.</p>
+        {% endif %}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+<div>
+    <button onclick="location.href='{% url 'Logistics:invoiceitem_display' %}'">Display all Invoice Item data</button>
+</div>
+<br>
+<div>
+    <button onclick="location.href='{% url 'Logistics:home' %}'">Home Page</button>
+</div>
