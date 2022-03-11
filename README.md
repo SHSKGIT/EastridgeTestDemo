@@ -91,3 +91,5 @@ Without Docker:
 https://youtu.be/qNfgAGF_-j0
 With Docker: 
 https://youtu.be/Mb_YFAAxy4s
+Fixed date picker widget in docker:
+https://youtu.be/093C-ZYON5s
