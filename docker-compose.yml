@@ -38,7 +38,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./webapp/static:/usr/share/nginx/html/static
+      - ./webapp/webapp/static:/usr/share/nginx/html/static
       - webapp_media_vol:/usr/share/nginx/html/media
       - ./compose/nginx/ssl:/usr/share/nginx/ssl
       - ./compose/nginx/log:/var/log/nginx
