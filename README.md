@@ -1,3 +1,5 @@
+Please use source blob for better format view.
+
 # EastridgeTestDemo
 This is a Python3.9 Django4.0 project running in Docker containers (Nginx + Django + MySQL8.0)
 
@@ -36,8 +38,8 @@ python manage.py migrate Logistics
 Naviagte to where manage.py is located.
 python manage.py runserver
 (You can also specify a port: python manage.py runserver 0:8080)
-Go to a web browser and type url: localhost/Logistics/home
-(If using port 8080, type url: localhost:8080/Logistics/home)
+Go to a web browser and type url: localhost/logistics/home
+(If using port 8080, type url: localhost:8080/logistics/home)
 Before typing url, please check if the port is being used or not:
 On Mac: netstat -an | grep LISTEN
 On Linux: netstat -tulpn | grep LISTEN
